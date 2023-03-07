@@ -1,4 +1,5 @@
 ﻿using GradeBook.GradeBooks;
+using Newtonsoft.Json;
 using System;
 
 namespace GradeBook.UserInterfaces
@@ -33,16 +34,58 @@ namespace GradeBook.UserInterfaces
 
         public static void CreateCommand(string command)
         {
+            //var parts = command.Split(' ');
+            //if (parts.Length != 2)
+            //{
+            //    Console.WriteLine("Command not valid, Create requires a name.");
+            //    return;
+            //}
+            //var name = parts[1];
+            //BaseGradeBook gradeBook = new BaseGradeBook(name);
+            //Console.WriteLine("Created gradebook {0}.", name);
+            //GradeBookUserInterface.CommandLoop(gradeBook);
+            //if(parts.Length != 3) Console.WriteLine("Command not valid, Create requires a name and type of gradebook.");
+            //if (parts[2] == "standard")
+            //{
+            //    StandardGradeBook standardGradeBook = new StandardGradeBook(name);
+            //}
+            //else if (parts[2] == "ranked")
+            //{
+            //    RankedGradeBook rankedGradeBook = new RankedGradeBook(name);
+            //}
             var parts = command.Split(' ');
-            if (parts.Length != 2)
+            if (parts.Length != 3)
             {
-                Console.WriteLine("Command not valid, Create requires a name.");
+                Console.WriteLine("Command not valid, Create requires a name and type of gradebook.");
                 return;
             }
+            if (parts.Length == 3)
+            {
+                if (parts.Length == 3 && parts.Length == 0 || parts.Length == 3 && parts[0] == "")
+                {
+                    Console.WriteLine("Command not valid, name cannot be empty.");
+                    return;
+                }
+                if (parts.Length == 3 && parts[2] != "standard" && parts[2] != "ranked")
+                {
+                    Console.WriteLine("{0} is not a supported type of gradebook, please try again", parts[2]);
+                    return;
+                }
+            }
+
             var name = parts[1];
             BaseGradeBook gradeBook = new BaseGradeBook(name);
             Console.WriteLine("Created gradebook {0}.", name);
             GradeBookUserInterface.CommandLoop(gradeBook);
+
+            if (parts[2] == "standard")
+            {
+                StandardGradeBook standardGradeBook = new StandardGradeBook(name);
+            }
+            else if (parts[2] == "ranked")
+            {
+                RankedGradeBook rankedGradeBook = new RankedGradeBook(name);
+            }
         }
 
         public static void LoadCommand(string command)
@@ -75,5 +118,8 @@ namespace GradeBook.UserInterfaces
             Console.WriteLine();
             Console.WriteLine("Quit - Exits the application");
         }
+
+
+        
     }
 }
