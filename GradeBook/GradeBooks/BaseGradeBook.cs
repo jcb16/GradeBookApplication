@@ -266,8 +266,6 @@ namespace GradeBook.GradeBooks
                              select type).FirstOrDefault();
             
             return JsonConvert.DeserializeObject(json, gradebook);
-        }
-
-        
+        }  
     }
 }
