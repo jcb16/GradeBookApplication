@@ -1,6 +1,7 @@
 ﻿using GradeBook.GradeBooks;
 using Newtonsoft.Json;
 using System;
+using System.Xml.Linq;
 
 namespace GradeBook.UserInterfaces
 {
@@ -34,25 +35,6 @@ namespace GradeBook.UserInterfaces
 
         public static void CreateCommand(string command)
         {
-            //var parts = command.Split(' ');
-            //if (parts.Length != 2)
-            //{
-            //    Console.WriteLine("Command not valid, Create requires a name.");
-            //    return;
-            //}
-            //var name = parts[1];
-            //BaseGradeBook gradeBook = new BaseGradeBook(name);
-            //Console.WriteLine("Created gradebook {0}.", name);
-            //GradeBookUserInterface.CommandLoop(gradeBook);
-            //if(parts.Length != 3) Console.WriteLine("Command not valid, Create requires a name and type of gradebook.");
-            //if (parts[2] == "standard")
-            //{
-            //    StandardGradeBook standardGradeBook = new StandardGradeBook(name);
-            //}
-            //else if (parts[2] == "ranked")
-            //{
-            //    RankedGradeBook rankedGradeBook = new RankedGradeBook(name);
-            //}
             var parts = command.Split(' ');
             if (parts.Length != 3)
             {
@@ -110,7 +92,7 @@ namespace GradeBook.UserInterfaces
             Console.WriteLine();
             Console.WriteLine("GradeBook accepts the following commands:");
             Console.WriteLine();
-            Console.WriteLine("Create 'Name' - Creates a new gradebook where 'Name' is the name of the gradebook.");
+            Console.WriteLine("Create 'Name' 'Type' - Creates a new gradebook where 'Name' is the name of the gradebook and 'Type' is what type of grading it should use.");
             Console.WriteLine();
             Console.WriteLine("Load 'Name' - Loads the gradebook with the provided 'Name'.");
             Console.WriteLine();
